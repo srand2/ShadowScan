@@ -109,7 +109,7 @@ foreach ($aliveHost in $aliveHosts) {
                 Write-Host "Port $port is open on $ip! Service: $($portServices[$port])" -ForegroundColor Green
                 $tcpClient.EndConnect($asyncResult) | Out-Null
             } else {
-                Write-Host "Port $port is closed on $ip." -ForegroundColor Red
+                Write-Host "Port $port is closed on $ip" -ForegroundColor Red
             }
             $waitHandle.Dispose()
             $tcpClient.Close()
