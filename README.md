@@ -11,6 +11,12 @@ Simply provide your ip file, a list of IPs and add any ports you'd like to scan.
 PS> .\YourTool.ps1 -idFile "ips.txt" -ports 80,443,445
 ```
 
+You can use a download-cradle to run in memory
+```
+IEX (New-Object Net.Webclient).downloadstring("https://raw.githubusercontent.com/srand2/ShadowScan/main/ShadowScan.ps1")
+```
+
+
 Feel free to add mappings to other services and their respective ports:
 
 ```
