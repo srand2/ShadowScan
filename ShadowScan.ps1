@@ -40,7 +40,6 @@ EXAMPLES
     Write-Host $helpText
 }
 
-if ($PSCmdlet.ShouldProcess("ShadowScan")) {
     if ($ipFile -and (-not (Test-Path $ipFile -PathType Leaf))) {
         $ipFile = Join-Path $PSScriptRoot $ipFile
     }
