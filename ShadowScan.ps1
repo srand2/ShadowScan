@@ -1,14 +1,14 @@
 param (
-    [Parameter(Mandatory=$true)]
-    [ValidateNotNullOrEmpty()]
-    [string]$idFile,
-
-    [Parameter(Mandatory=$true)]
-    [ValidateNotNullOrEmpty()]
-    [string[]]$ports
+    [string]$ipFile = "ips.txt",
+    [string[]]$customPorts
 )
 
-$ipAddresses = Get-Content $idFile
+# Check if the IP file is present, otherwise use default file name
+if (-not (Test-Path $ipFile -PathType Leaf)) {
+    $ipFile = Join-Path $PSScriptRoot $ipFile
+}
+
+$ipAddresses = Get-Content $ipFile
 
 $aliveHosts = @()
 
@@ -29,6 +29,7 @@ if ($aliveHosts.Count -eq 0) {
     exit
 }
 
+$defaultPorts = @(80, 443, 445, 7070, 7071, 4786, 4848, 5555, 5556, 3300, 6129, 6379, 6970)
 $portServices = @{
     80    = "HTTP";
     443   = "HTTPS";
@@ -54,6 +55,10 @@ foreach ($aliveHost in $aliveHosts) {
     $a = $ip -split '\.' | Select-Object -Last 1
     $combinedIP = "$joined.$a"
     Write-Host "Scanning ports for host $ip..."
+    $portsToScan = $defaultPorts
+    if ($customPorts) {
+        $portsToScan = $customPorts
+    }
     foreach ($port in $ports) {
         try {
             $tcpClient = New-Object Net.Sockets.TcpClient
