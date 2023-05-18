@@ -3,7 +3,7 @@ ShadowScan captures the essence of stealthiness, slow scanning, and the pursuit 
 
 Based on the "Potential Hacks To Look For" - from [https://github.com/trustedsec/spoonmap ](https://github.com/trustedsec/spoonmap#potential-hacks-to-look-for)
 
-However I wanted to create a scanner that is low and slow. Helpful for Red Team Engagements. The script will randomly sleep between ping scans and port scans.
+This scanner is low and slow. Helpful for Red Team Engagements. The script will randomly sleep between ping scans and port scans.
 
 
 Simply provide your ip file, a list of IPs and add any ports you'd like to scan. 
