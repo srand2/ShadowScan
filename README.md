@@ -8,8 +8,16 @@ This scanner is low and slow. Helpful for Red Team Engagements. The script will 
 
 Simply provide your ip file, a list of IPs and add any ports you'd like to scan. 
 ```
-PS> .\YourTool.ps1 -idFile "ips.txt" -ports 80,443,445
+PS> .\YourTool.ps1 -ipFile "ips.txt" -ports 80,443,445
 ```
+
+By default, if no arguments are passed it will use ips.txt in the local folder and the default ports inside the script. 
+
+The script can be downloaded and run in memory. Obviously obfuscation of the download cradle should be performed:
+```
+IEX (New-Object Net.Webclient).downloadstring("https://raw.githubusercontent.com/srand2/ShadowScan/main/ShadowScan.ps1")
+```
+
 
 Feel free to add mappings to other services and their respective ports:
 
